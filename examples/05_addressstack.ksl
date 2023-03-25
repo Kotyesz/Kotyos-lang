@@ -1,0 +1,59 @@
+#INC STD.addressstack
+#INC STD.auto //Might lead to bad practises, highly recomended to avoid if possible!
+#INC STD.prep
+#INC IO.print
+#INC STR.format
+
+0 void_function{
+    //this will make the variable thingy in start changed to 42
+    edit 42;   
+    //now lets create another variable and put it on the stack
+    8 new_thingy=16;
+    save new_thingy;
+    //now we cannot access thingy from the stack until we clear the last element
+    //but let's print it anyways using an unnamed function, however since the two variables have two different sizes, we might have an issue,
+    //but since this is just a print and an example, we can get away with auto which is highly meh since the compiler is not made as of the envisioning 
+    IO.print(format("The variable in start is", new(auto {
+        //since we want the second element of the stack, we loadclear the top element into a variable
+        address top = loadclear; //since all systems have different size addresses, the address definition will make sure you'll use the right lenght
+        //now the top element is saved in top and is actually not in the stack anymore
+        //now we can make use prep to prepare what to return, and since we don't want the address but the value, we use peek
+        prep peek;
+        //now that we have prepared a value to return, the function will return that value at the end of execution, unless we change it or return something by ourselves
+        //now lets readd the address to the stack so the stack looks the same after the print
+        saveaddr top;
+    })));
+    //now the address stack will look like: [0]void_function.new_thingy [1]start.thingy
+    //lets see how replace works, we make a new variable
+    16 another_thingy;
+    //now make it the top element without manually clearing and adding it
+    replace another_thingy
+    //now the stack looks like: [0]void_function.another_thingy [1]start.thingy
+    //now since another_thingy is referenced it won't clear at the end of the function, until it is referenced somewhere 
+}
+
+1 start{
+    //in KSL you can have pointers, the first type (maybe only way, haven't decided yet) is to put your pointers on the address stack
+    //for this we need a new file included called STD, STD is planned to have a lot of things so we include addressstack collection to limit the program size
+    //this will allow you to use address, edit, save, saveaddr, load, loadclear, clearall, peek and replace
+    //this collection doesn't need STD.funcname infront of it because these are excpected to be unchanged,
+    //unlike print, you should make your own print sometimes
+
+    //lets make a variable
+    32 thingy;
+    //now save it on the top of the stack
+    save thingy;
+    //now that we have thingy on the stack move it to another function
+    void_function;
+    //now let's make an unnamed function 
+    new(0 {
+        address at_addr = loadclear;
+        //now if I were to end the function here at_addr would be cleared and another_thingy would cease to exist
+        //but if I were to read it then it would still be available
+    });
+    //now the address stack only contains thingy, and another_thingy in the void function is cleared from memory
+    //since the program ends we can leave it how is, will get cleaned, but it is good practise to clear the address stack by ourselves
+    //because auto clear can be disabled
+    //clear only clears the top address, clearall clears all the programs address stack
+    clearall;
+}=0

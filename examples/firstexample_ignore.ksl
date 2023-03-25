@@ -1,0 +1,62 @@
+#INC STD
+#INC IO
+#MAX_ALLOC 1024 //optional command, in this case you get 1024 bits to work with in memory
+//by default the compiler would try to guess the required memory
+//for embeded you could give the max memory you have, these could be included originated from another file
+//e.g: #INC "stm.ksl"
+//this lib would contain a bunch of defines like: #DEF <chipname>_maxmem <maximum_memory_that_is_usable_>
+
+//; and {} is the same, only that {} will cause things to be a function
+
+func(0) void_and_loop_example(32 loop_repeat_times){ //if you want arguments in your function you can use this way, or you can just point to a memory address
+    loop(32 i=0){
+        IO.print(format("%d",i));
+        (i++>loop_repeat_times)?break;//if statement
+    } //since you can get by only using one type of loop I've decided to have only one infinite loop with the words continue and break
+    IO.print(NL);//new line NL is 8 13 for new line (x86)
+} //this won't need a return value
+
+0 void_and_loop_example2{
+    32 loop_repeat_times = load, i=0;
+    // this will load the last saved memory address without clearing it
+    loop{
+        IO.print(format("%d",i));
+        (i++>loop_repeat_times)?break;
+    }
+    IO.print(NL);
+}
+
+32 basic_branch(1 boolean){
+    boolean?
+        ret new(32 69);
+    :
+        ret new(32 14);
+
+    //boolean?{
+    //    IO.print("yes");
+    //    ret new(32 69);
+    //}:{
+    //    IO.print("no");
+    //    ret new(32 14);
+    //}
+}=new(32 0) //here we need the new function since we expect 32 bits instead of one
+
+0*3 function_array={
+    0{
+    },
+    0{
+    },
+    0{
+    }
+}
+
+1 start{
+    void_and_loop_example(25); //two ways to call a function (all functions must have {} when declared, functions with args must have the () simbols when called)
+    call void_and_loop_example(35); //you can also use call in order to make your code readable, tho it is optional mostly recomended when you have no args
+    save(new(32 54)); // this will create a 32 bit anonymous variable with the value 54, the variable will be cleared when the clearsaves or loadclear func gets called
+    void_and_loop_example2;
+    saves_length all_the_saves=clearsaves; //this will dump every memory address into a variable, this is basically useless for most cases, but maybe people will get
+                                           //use from it? It basically makes one combined number and of old mem addresses, vars won't get cleaned but anons yes
+    3 var1 = b101, 3 var2 = u5; //var1 and var2 is the same, b stands for bits u for unsigned, you print it out however you want, bit wise they match
+    //if you have saves at this point call clearsaves please...
+}=0 //return value can be 0 or 1, because the function is a boolean function;
