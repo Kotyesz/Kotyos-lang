@@ -18,8 +18,8 @@
   //however if you want a variable to have the same value for each iteration
   //and disapear after the loop ends you'd define it the 2nd way:
   loop(32 j=0){
-    IO.print(STR.format("j exists as %d\n",j));
+    IO.print(format("j exists as %d\n",j));
     j++<100 ? break;
   }
-  IO.print(STR.format("j no longer exists, but i does and is %d\n",i));
+  IO.print(format("j no longer exists, but i does and is %d\n",i));
 }=0
