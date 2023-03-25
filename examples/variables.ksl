@@ -1,0 +1,17 @@
+#INC IO.print
+#INC STR.format
+
+1 start{
+  3 variable; //this declares a variable with 3 bits
+  variable=-3; //this makes the variable have the binary value of 111, unsigned value 7, and signed value -3
+  variable=u6; //this makes the variable be equal to 110, 6 or -2
+  variable=b101; //this makes variable 0 be equal to 101, 5 or -1
+  
+  //you can also give a value to your variable when declaring it
+  32 second_variable=153;
+  //to print it out you can use
+  IO.print(second_variable);
+  //However I recommend you use formatting, because print won't make a new line which may cause weird characters
+  //in unix like systems
+  IO.print(format("Your value is: %d", second_variable));
+}=0
