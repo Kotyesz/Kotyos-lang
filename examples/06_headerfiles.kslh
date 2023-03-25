@@ -1,0 +1,22 @@
+// we use START_HEADER so we don't have to use a lot of # symbols
+#START_HEADER
+INC IO.print
+INC STR.format
+
+//we create references to the functions headers
+//so the compiler can expose them to start
+
+DEFFUNC 0 void_function
+DEFFUNC 32 multiply(32 a, 32 b)
+
+//since this is like a macro in c we can also make
+//macros like this
+
+DEF 32 sum(32 a, 32 b){}=a+b
+
+//this will replace all of the sum calls with the function itself 
+//also you can make variables with DEF
+
+
+
+END_HEADER

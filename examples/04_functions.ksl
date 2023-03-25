@@ -1,7 +1,7 @@
 #INC IO.print
 #INC STR.format
 
-#DEFFUNC 32 sum(32 a, 32 b) //this could be moved into 03_functions.ksh
+#DEFFUNC 32 sum(32 a, 32 b) //this could be moved into 03_functions.kslh
 
 0 void_function{
   IO.print("I'am a void function with no arguments!\n");

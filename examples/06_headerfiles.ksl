@@ -1,0 +1,20 @@
+#HEADER "06_headerfiles.kslh"
+//int this example I'll just copy the 04 example and make it
+//with headers
+
+//lets put start on top so it doesn't see the functions bellow
+//only the references
+
+1 start{
+  32 a=52, b=23;
+  IO.print(format("a: %d\tb: %d\nsum: %d\nmultiplication: %d\n",a,b,sum(a.b),multiply(a,b));
+  void_function;
+}=0
+
+0 void_function{
+  IO.print("I'am a void function with no arguments!\n");
+}
+
+32 multiply(32 a,32 b){
+  32 result=a*b);
+}=result
