@@ -1,0 +1,25 @@
+#INC IO.print
+#INC STR.format
+
+1 start{
+  //in KSL there is no for loops nor while loops, you only have one loop, that goes infinite
+  //times by default. However you can use it two ways
+  //1st way
+  32 i=0;
+  loop{
+    ++i<32 ? break;
+    IO.print("I am a \"for\" loop\n");
+  }
+  loop{
+    IO.print("I act like while(i--)!\n");
+    !i--?break;
+  }
+  // and so on
+  //however if you want a variable to have the same value for each iteration
+  //and disapear after the loop ends you'd define it the 2nd way:
+  loop(32 j=0){
+    IO.print(STR.format("j exists as %d\n",j));
+    j++<100 ? break;
+  }
+  IO.print(STR.format("j no longer exists, but i does and is %d\n",i));
+}=0
