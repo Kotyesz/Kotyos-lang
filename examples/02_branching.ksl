@@ -1,0 +1,18 @@
+#INC IO.print
+#INC STR.format
+
+1 start{
+  //in ksl you use ? as if and : as else. Works almost as ternary operator
+  //this branch won't return anything because it has a the print function in it
+  1<42? IO.print("1 is less than 42\n");
+  : IO.print("1 is more than 42?\n");
+  //to make a branch with it returning you'd do this, it will act as a normal ternary operator
+  IO.print(1<42?"1 is less than 42\n"):"1 is more than 42?\n");
+  //if you want to make it do more things then call a function or return a value
+  //you can make an "unnamed function" using curly braces
+  1<42?{
+    //do something cool
+  }:{
+    //question reality
+  }
+}=0
