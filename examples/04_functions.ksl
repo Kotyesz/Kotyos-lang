@@ -1,0 +1,31 @@
+#INC IO.print
+#INC STR.format
+
+#DEFFUNC 32 sum(32 a, 32 b) //this could be moved into 03_functions.ksh
+
+0 void_function{
+  IO.print("I'am a void function with no arguments!\n");
+}
+
+32 multiply(32 a,32 b){
+  //you can make a variable inside and have it returned.
+  32 result=a*b);
+}=result //when you close down the function and has a return value it translates to a ret at the end
+// so this code would look the same in binary as this:
+// 32 multiply(32 a,32 b){
+//    32 result=a*b);
+//    ret result;
+// }
+//the choice is yours
+//however you will need to use ret if you want to return earlier. but making the =val style can help you
+//see the difference between function ends and others
+
+1 start{
+}=0
+
+32 sum(32 a, 32 b){ // this function would't be visible if we had't defined it above since it is below the start
+  ret a+b;
+}
+
+// another way to make this fuction is
+// 32 sum(32 a, 32 b){}=a+b
