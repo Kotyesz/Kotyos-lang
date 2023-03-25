@@ -21,6 +21,9 @@
 //see the difference between function ends and others
 
 1 start{
+  32 a=52, b=23;
+  IO.print(format("a: %d\tb: %d\nsum: %d\nmultiplication: %d\n",a,b,sum(a.b),multiply(a,b));
+  void_function; // you can also call it with void_function();
 }=0
 
 32 sum(32 a, 32 b){ // this function would't be visible if we had't defined it above since it is below the start
